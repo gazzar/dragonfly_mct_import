@@ -79,12 +79,8 @@ def h5_path_exists(filepath: str, h5_path: str) -> bool:
     bool
         True iff the path exists
     """
-    try:
-        with h5py.File(filepath, 'r') as f:
-            _data = f[h5_path]
-        return True
-    except KeyError:
-        return False
+    with h5py.File(filepath, 'r') as f:
+        return h5_path in f
 
 
 def error_dialog(title: str, text: str) -> None:
